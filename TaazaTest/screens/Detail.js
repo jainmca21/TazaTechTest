@@ -7,8 +7,6 @@ import { useEffect } from 'react'
 export const Detail = (props) =>{
     console.log(JSON.stringify(props.route.params))
 
-
-
     function playTrack(url) {
         NetInfo.fetch().then(state => {
             if(state.isConnected){
