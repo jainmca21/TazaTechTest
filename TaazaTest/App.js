@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Home } from './screens/Home';
 import { Detail } from './screens/Detail';
+import { navigationRef } from './utils/context';
 
 
 
@@ -18,7 +19,7 @@ const stack = createStackNavigator()
 
 const HomeStack = ()=>{
   return(
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
     <stack.Navigator initialRouteName='Home' mode='modal' >
       <stack.Screen name='Home' component = {Home}/>
       <stack.Screen name='Detail' component = {Detail}/>

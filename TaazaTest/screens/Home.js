@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import { View ,Text,Image, FlatList, StyleSheet, Dimensions} from 'react-native'
+import { View ,Text,Image, FlatList, StyleSheet, Dimensions, TouchableOpacity} from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import NetInfo from "@react-native-community/netinfo";
+import { navigationRef } from '../utils/context';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -55,17 +56,20 @@ export const Home = () =>{
 function getAlbum(album, index){
     console.log(`album ${JSON.stringify(album.collectionViewUrl)}`)
     return( <View >
+        <TouchableOpacity style={{flexDirection:'row'}} onPress = {()=>{
+                navigationRef?.current.navigate('Detail', album)
+            }}>
         <View style={{flexDirection:'row'}}>
         <Image  source={{uri: `${album.collectionViewUrl}`}} style={{ width: 100, height: 100 }} resizeMode='contain'/>
             <Text>{album.trackName}</Text>
         </View>
+        </TouchableOpacity>
       </View>)
 }
 
 function getSeperator(){
     return( <View style = {styles.seperator}/>)
 }
-
 
 
 const styles = StyleSheet.create({
